@@ -29,9 +29,8 @@ Criar um ambiente completo, eficiente e **local** para desenvolvimento ABAP usan
 curl -fsSL https://ollama.com/install.sh | sh
 
 # Puxe os modelos
-ollama pull qwen-coder-abap
+ollama pull qwen3-coder:30b-a3b
 ollama pull nomic-embed-text
-ollama pull qwen3-coder:30b-a3b   # opcional
 
 # Inicie o Chroma MCP Server
 uvx chroma-mcp --client-type persistent --data-dir ./chroma_abap_data --host 0.0.0.0 --port 8000
