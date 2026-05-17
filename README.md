@@ -34,3 +34,30 @@ ollama pull nomic-embed-text
 
 # Inicie o Chroma MCP Server
 uvx chroma-mcp --client-type persistent --data-dir ./chroma_abap_data --host 0.0.0.0 --port 8000
+```
+### 2. Configure para rede (acesso remoto)
+```bash
+export OLLAMA_HOST=0.0.0.0
+export OLLAMA_ORIGINS=*
+```
+# Ou crie um serviço systemd para rodar sempre
+
+### 3. Instale Open WebUI (Docker — mais fácil)
+```bash
+docker run -d -p 3000:8080 \
+  -e OLLAMA_BASE_URL=http://host.docker.internal:11434 \
+  --add-host=host.docker.internal:host-gateway \
+  --name open-webui \
+  -v open-webui:/app/backend/data \
+  ghcr.io/open-webui/open-webui:main
+```
+
+### 4. RAG com LangChain + Chroma (Python)
+```bash
+pip install langchain langchain-community langchain-ollama chromadb pypdf sentence-transformers tqdm
+```
+
+### 5. Chroma MCP Server
+```bash
+uvx chroma-mcp --client-type persistent --data-dir ./chroma_abap_data --host 0.0.0.0 --port 8000
+```
